@@ -1,0 +1,11 @@
+531 calculator is a command line tool that calculates a training cycle for the 5/3/1 weightlifting program.
+
+might only need the root command? 
+
+
+take the lift name, weight, and reps from cli flags 
+create a lift struct with lift name for the name field 
+use the weight and reps to calculate the 1rm 
+use the 1rm to calculate the trainingmax 
+use the 1rm to calculate each weeks workout 
+print the lift struct to the console or export it to JSON 
