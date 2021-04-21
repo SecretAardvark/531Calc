@@ -42,21 +42,27 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "531calc",
 	Short: "531calc takes your lifting numbers and calculates a full 5/3/1 cycle.",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Long: `531calc is a tool that generates a 1 month training cycle of the 5/3/1
+		weightlifting program for the user. 
+		
+		Usage: 531calc <lift> --<weight> --<reps>
+			531calc Squat -w 225 -r 10 
+			531calc Deadlift --weight 315 --reps 5 
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
+		`,
 	Run: func(cmd *cobra.Command, args []string) {
+		//Create a lift struct with lift name for the name field
 		Lift := lift.Lift{Name: os.Args[1]}
+		//Use the weight and reps to calculate the 1rm
 		Lift.GetOneRep(Weight, Reps)
+		//Use the 1rm to calculate the trainingmax
 		Lift.GetTM()
+		//Use the training max to calculate the training cycle.
 		Lift.GetCycle()
-		fmt.Println(Lift)
 
+		//Print the lift struct to the console and export it to JSON
+
+		fmt.Println(Lift)
 		jsonfile, _ := os.Open("531.json")
 		defer jsonfile.Close()
 
